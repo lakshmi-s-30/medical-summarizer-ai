@@ -1,6 +1,7 @@
 from langchain_ollama import ChatOllama
-from langchain_classic.chains.summarize import load_summarize_chainfrom langchain_community.document_loaders import PyMuPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_classic.chains.summarize import load_summarize_chain
+from langchain_community.document_loaders import PyMuPDFLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 class MedicalSummarizer:
     def __init__(self):
