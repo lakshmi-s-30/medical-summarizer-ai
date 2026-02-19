@@ -1,71 +1,38 @@
-**Medical Summarizer AI**
-Medical Summarizer AI is a specialized tool designed to summarize complex medical reports locally. By leveraging Llama 3.1 via Ollama, this application ensures that sensitive patient data never leaves the local machine, addressing the critical privacy concerns (HIPAA compliance) associated with cloud-based LLMs.
+# Medical Summarizer AI: Privacy-First Medical Summarizer
 
-**Key Features**
-100% Local Inference: Uses Llama 3.1 via Ollama to ensure total data privacy.
+**Medical Summarizer AI** is an end-to-end solution for summarizing complex medical reports locally. By leveraging **Llama 3.1** via **Ollama**, it ensures that sensitive patient data never leaves your hardware, providing a secure alternative to cloud-based LLM APIs.
 
-Advanced Document Processing: Custom PDF parsing and cleaning logic using PyMuPDF.
+---
 
-Smart Chunking: Employs RecursiveCharacterTextSplitter to maintain medical context across long documents.
+## Key Features
+- **100% Data Privacy:** Zero data sent to external servers; all processing happens locally.
+- **Medical Intelligence:** Powered by Llama 3.1 (8B) for high-accuracy clinical summaries.
+- **Smart Chunking:** Uses `RecursiveCharacterTextSplitter` to handle long PDFs without losing context.
+- **Instant Deployment:** Interactive UI built with Streamlit for rapid document analysis.
 
-PII Masking: Automated regex-based sanitization of sensitive information (SSNs, Phone Numbers) before processing.
+---
 
-Professional UI: Built with Streamlit for a seamless, interactive user experience.
+## Technical Architecture
 
-**Technical Architecture**
-The project follows a modular "Pipeline" architecture:
 
-Ingestion: Streamlit handles the PDF upload and saves it to a secure temporary local path.
 
-Processing: MedicalDocProcessor cleans the text and extracts metadata.
+The application follows a modular pipeline designed for scalability:
+1. **Frontend:** Streamlit handles file ingestion and displays results.
+2. **Processor:** A custom module cleans PDF text and handles metadata extraction using `PyMuPDF`.
+3. **Summarizer Engine:** Uses **LangChain's Map-Reduce** chain to compress long medical texts into concise, actionable insights.
 
-Summarization: MedicalSummarizer uses a Map-Reduce chain to handle large documents that exceed the model's context window.
+---
 
-Local LLM: The system communicates with the Ollama API to run Llama 3.1 locally.
+## Getting Started
 
-**Getting Started**
-*Prerequisites*
-Python 3.10+
+### Prerequisites
+* **Python:** 3.10 or higher
+* **Ollama:** [Download here](https://ollama.com/)
+* **Local Model:** Run `ollama pull llama3.1` in your terminal.
 
-Ollama installed and running
+### Installation & Setup
 
-Llama 3.1 model pulled: ollama pull llama3.1
-
-*Installation*
-Clone the repo:
-
-Bash
-git clone https://github.com/yourusername/med-summarizer-ai.git
-cd med-summarizer-ai
-Set up Virtual Environment:
-
-Bash
-python -m venv venv
-source venv/bin/activate  # Mac/Linux
-.\venv\Scripts\activate   # Windows
-Install Dependencies:
-
-Bash
-pip install -r requirements.txt
-Running the App
-Bash
-streamlit run app.py
-
-**Challenges & Solutions**
-Version Migrations: Navigated the LangChain v1.0 migration by implementing langchain-classic and the new standalone langchain-text-splitters package.
-
-Memory Management: Implemented a try...finally block in the file handler to ensure temporary medical data is deleted immediately after processing.
-
-Context Window Issues: Used the Map-Reduce strategy to summarize long medical histories that would otherwise crash a standard LLM prompt.
-
-**Tech Stack**
-Language: Python 3.11
-
-AI Framework: LangChain, Ollama
-
-LLM: Llama 3.1 (8B)
-
-Frontend: Streamlit
-
-PDF Engine: PyMuPDF (fitz)
-
+1. **Clone the repository**
+   ```bash
+   git clone [https://github.com/yourusername/medical-summarizer-ai.git](https://github.com/yourusername/medical-summarizer-ai.git)
+   cd medical-summarizer-ai
